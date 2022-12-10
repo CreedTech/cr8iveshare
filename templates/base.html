@@ -14,10 +14,39 @@
 
 <body
     class="bp-legacy page-template-default page page-id-776 theme-vidio pmpro-body-has-access woocommerce-no-js youzify-blue-scheme not-logged-in layout-wide wpb-js-composer js-comp-ver-6.7.0 vc_responsive no-js">
-    {% block content %}
-    {% endblock content %}
     
+    <div id="haru-main">
+    {% include "navbar.html" %}
+    {% block content %}
+        <!-- Open HARU Content Main -->
+        {% endblock content %}
+
+        {% include "footer.html" %}
+    </div>
+<!-- Close haru main -->
+
+<a class="back-to-top" href="javascript:;">
+  <i class="fa fa-chevron-up"></i>
+</a>
+<div class="haru-ajax-overflow">
+  <div class="haru-ajax-loading">
+    <div class="loading-wrapper">
+      <div class="spinner" id="spinner_one"></div>
+      <div class="spinner" id="spinner_two"></div>
+      <div class="spinner" id="spinner_three"></div>
+      <div class="spinner" id="spinner_four"></div>
+      <div class="spinner" id="spinner_five"></div>
+      <div class="spinner" id="spinner_six"></div>
+      <div class="spinner" id="spinner_seven"></div>
+      <div class="spinner" id="spinner_eight"></div>
+    </div>
+</div>
+</div>
+<div class="haru-lightbox-overlay"></div>
+<div class="haru-lightbox">
+  <div class="close-lightbox"><i class="haru-icon haru-times"></i></div>
+</div>
     {% include 'scripts.html' %}
 </body>
 
-</html
+</html>
