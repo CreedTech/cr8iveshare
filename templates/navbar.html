@@ -29,7 +29,7 @@
 <div class="user-menu-shortcode default ">
 <div class="user-account-wrap">
           <div class="user-account-content logged-out">
-        <a href="../login/index.html" class="user-menu-login"><i class="haru-icon haru-user"></i></a>
+        <a href="{% url 'login' %}" class="user-menu-login"><i class="haru-icon haru-user"></i></a>
     </div>
   </div>
 </div>
@@ -254,7 +254,7 @@
 <div class="user-menu-shortcode default ">
 <div class="user-account-wrap">
           <div class="user-account-content logged-out">
-        <a href="../login/index.html" class="user-menu-login"><i class="haru-icon haru-user"></i></a>
+        <a href="{% url 'login' %}" class="user-menu-login"><i class="haru-icon haru-user"></i></a>
     </div>
   </div>
 </div>
@@ -495,21 +495,9 @@
 <li id="menu-item-1131" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-1 "><a href="../submit-series/index.html">Submit Series</a></li>
 </ul>
 </li>
-<li id="menu-item-1152" class="haru-menu menu_style_dropdown   menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0 "><a href="#">Pages</a><b class="menu-caret"></b>
-<ul class="sub-menu animated menu_fadeInDown" >
-<li id="menu-item-2431" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-1 "><a href="../blog/index.html">Blog</a></li>
-<li id="menu-item-2432" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-1 "><a href="../shop/index.html">Shop</a></li>
-<li id="menu-item-1156" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children level-1 "><a href="../about-us/index.html">About Us</a><b class="menu-caret"></b>
-<ul class="sub-menu animated menu_fadeInDown" >
-<li id="menu-item-1155" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-2 "><a href="../about-us-2/index.html">About Us 2</a></li>
-</ul>
+<li id="menu-item-1152" class="haru-menu menu_style_dropdown   menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0 "><a href="{% url 'core:contact' %}">Contact Us</a>
 </li>
-<li id="menu-item-1154" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children level-1 "><a href="../contact-us/index.html">Contact Us</a><b class="menu-caret"></b>
-<ul class="sub-menu animated menu_fadeInDown" >
-<li id="menu-item-1153" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-2 "><a href="../contact-us-2/index.html">Contact Us 2</a></li>
-</ul>
-</li>
-</ul>
+<li id="menu-item-1152" class="haru-menu menu_style_dropdown   menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0 "><a href="{% url 'core:about' %}">About Us</a>
 </li>
 <li id="menu-item-2489" class="haru-menu menu_style_dropdown   menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0 "><a href="#">Membership</a><b class="menu-caret"></b>
 <ul class="sub-menu animated menu_fadeInDown" >
@@ -527,7 +515,7 @@
 </li>
 <li id="menu-item-2500" class="haru-menu menu_style_dropdown   menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-1 "><a href="#">Youzer</a><b class="menu-caret"></b>
 <ul class="sub-menu animated menu_fadeInDown" >
-<li id="menu-item-2501" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-2 "><a href="../login/index.html">Login</a></li>
+<li id="menu-item-2501" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-2 "><a href="{% url 'login' %}">Login</a></li>
 <li id="menu-item-2502" class="haru-menu menu_style_dropdown   menu-item menu-item-type-post_type menu-item-object-page level-2 "><a href="../register/index.html">Register</a></li>
 </ul>
 </li>
@@ -538,7 +526,7 @@
               <div class="header-elements d-flex align-self-center">
                           <div class="header-elements header-elements-nav">
       <div class="header-elements-item custom-text-wrap">
-  <a href="../submit-video/index.html" class="button-background button-background--primary button-background--medium">Submit Video</a>    </div>
+  <a href="../submit-video/index.html" class="button-background button-background--primary button-background--medium">Upload Video</a>    </div>
 </div>
                   </div>
           </div>

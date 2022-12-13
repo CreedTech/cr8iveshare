@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+ {% load static %}
+  {% block title %}Cr8iveShare{% endblock title %}
+   {% block content %}
+<div id="haru-content-main" class="clearfix">
+  <div class="youzify-membership youzify-membership-page-box youzify-page">
+    <div
+      class="youzify-membership-form youzify-membership-signup-page form-with-header form-with-labels form-no-icons form-full-border form-border-flat"
+    >
+      <header class="youzify-membership-form-header">
+        <div
+          class="youzify-membership-form-cover youzify-membership-default-cover"
+          style="
+            background-image: url(/static/wp-content/plugins/youzer/includes/public/assets/images/geopattern.png);
+          "
+        >
+          <h2 class="form-cover-title">Sign Up</h2>
+        </div>
+      </header>
+
+      <div class="page" id="register-page">
+        <div id="template-notices" role="alert" aria-atomic="true"></div>
+
+        
+
+        <form
+          id="youzify-membership-form"
+          class="youzify-membership-login-form"
+          method="POST"
+          action=""
+        >
+        {% csrf_token %}
+          <!-- After Form Buttons -->
+          <!-- {{form}} -->
+          <!-- {% for error in form.non_field_errors %}
+                        <label>{{ error|escape }} </label>
+                        {% endfor %} -->
+                        {% for error in form.email.errors %}
+    <label>{{ error|escape }}  </label>
+{% endfor %}
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">Full Name</label>
+              <div class="youzify-membership-field-content">
+                {{form.full_name}}
+              </div>
+            </div>
+          </div>
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">Email</label>
+              <div class="youzify-membership-field-content">
+                {{form.email}}
+              </div>
+            </div>
+          </div>
+          
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">Password</label>
+              <div class="youzify-membership-field-content">
+                {{form.password1}}
+              </div>
+            </div>
+          </div>
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">Confirm Password</label>
+              <div class="youzify-membership-field-content">
+                {{form.password2}}
+              </div>
+            </div>
+          </div>
+          
+          <div
+            class="youzify-membership-form-item youzify-membership-remember-me"
+          >
+            <div class="youzify-membership-item-content">
+              <label class="youzify_membership_checkbox_field"
+                ><input name="rememberme" type="checkbox" value="forever" />
+                <div class="youzify_membership_field_indication"></div>
+                Remember Me</label
+              >
+            </div>
+            <a
+              class="youzify-membership-forgot-password"
+              href="../lost-password/index.html"
+              >Lost password?</a
+            >
+          </div>
+          <div
+            class="youzify-membership-form-actions form-fullwidth-button form-border-radius"
+          >
+            <div
+              class="youzify-membership-action-item youzify-membership-submit-item"
+            >
+              <div class="youzify-membership-item-inner">
+                <button type="submit" value="submit" name="signin_submit">
+                  <span class="youzify-membership-button-title">Sign Up</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <a
+              class="youzify-membership-forgot-password" style="text-align: center;"
+              href="../lost-password/index.html"
+              >Already have an account</a
+            >
+          <!-- After Form Buttons -->
+
+          <input type="hidden" name="youzify-membership-form" value="1" />
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- .youzify-membership-page -->
+  <a class="youzify-scrolltotop"><i class="fas fa-chevron-up"></i></a>
+</div>
+{% endblock content %}

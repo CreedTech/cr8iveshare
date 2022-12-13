@@ -1,14 +1,40 @@
 from django.db import models
-from django.core.validators import FileExtensionValidator
-from django.contrib.auth.models import AbstractUser
+# from django.core.validators import FileExtensionValidator
+from django.utils.text import slugify
+from django.conf import settings
+from django.urls import reverse
+from django.contrib.auth.models import (
+    BaseUserManager, AbstractBaseUser
+)
 
 
-class User(AbstractUser):
-    is_admin = models.BooleanField('Admin', default=False)
-    profile_image = models.ImageField(
-        default='dhttps://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png',
-        upload_to='portfolio/',
-        validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])]
-    )
-    date_created = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+# class Profile(models.Model):
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     id_user = models.IntegerField()
+#     bio = models.TextField(blank=True)
+#     profileImg = models.ImageField(
+#         upload_to='profile_images', default="book-icon.png")
+#     location = models.CharField(max_length=100, blank=True)
+
+#     def __str__(self):
+#         return self.user.username
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    class Meta:
+        verbose_name = ("Category")
+        verbose_name_plural = ("Categories")
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        slug = self.name
+        self.slug = slugify(slug, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("core:video_category", kwargs={"pk": self.pk})
