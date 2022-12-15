@@ -96,7 +96,7 @@ class LoginForm(forms.Form):
         #         if not is_confirmable and not email_confirm_exists:
         #             raise forms.ValidationError("This user is inactive.")
         user = authenticate(request, username=email, password=password)
-        if user is None:
+        if user:
             raise forms.ValidationError("Invalid credentials")
         login(request, user)
         self.user = user
