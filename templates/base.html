@@ -14,7 +14,7 @@
         document.documentElement.className + ' yes-js js_active js';
     </script>
     <title>
-      Home 2 &#8211; Vidio &#8211; Multipurpose Video Manager WordPress theme
+      {% block title %}{% endblock title %} 
     </title>
     <meta name="robots" content="max-image-preview:large" />
     {% include "links.html" %}
@@ -29,6 +29,7 @@
     <div id="haru-main">
       {% include "navbar.html" %}
       <!-- Open HARU Content Main -->
+      {% include 'messages.html' %}
       {% block content %} {% endblock content %}
       <!-- Close HARU Content Main -->
 

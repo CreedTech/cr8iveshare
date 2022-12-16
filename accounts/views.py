@@ -1,99 +1,109 @@
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, logout as logoutUser
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.urls import reverse
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, FormView, DetailView, View, UpdateView
-from django.views.generic.edit import FormMixin
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from accounts.forms import AccountAuthenticationForm, AccountUpdateForm, RegistrationForm
 # from django.utils.http import is_safe_url
 
-from core.mixins import NextUrlMixin, RequestFormAttachMixin
-from .forms import LoginForm, RegisterForm, UserDetailChangeForm
 
-
-# @login_required # /accounts/login/?next=/some/path/
-# def account_home_view(request):
-#     return render(request, "accounts/home.html", {})
-
-
-# LoginRequiredMixin,
-class AccountHomeView(LoginRequiredMixin, DetailView):
-    template_name = 'accounts/home.html'
-
-    def get_object(self):
-        return self.request.user
-
-
-class LoginView(NextUrlMixin, RequestFormAttachMixin, FormView):
-    form_class = LoginForm
-    success_url = '/'
-    template_name = 'accounts/login.html'
-    default_next = '/'
-
-    def form_valid(self, form):
-        next_path = self.get_next_url()
-        return redirect(next_path)
-
-
-class RegisterView(CreateView):
-    form_class = RegisterForm
+def register(request):
     template_name = 'accounts/register.html'
-    success_url = '/login/'
+    context = {}
+
+    if request.POST:
+        form = RegistrationForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            account = authenticate(username=username, password=raw_password)
+            messages.success(request, 'User registered successfully.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Invalid form submission.')
+            messages.error(request, form.errors)
+            context = {"signupform": form}
+    else:  # GET Request
+        form = RegistrationForm()
+        context = {"signupform": form}
+    return render(request, template_name, context)
 
 
-class UserDetailUpdateView(LoginRequiredMixin, UpdateView):
-    form_class = UserDetailChangeForm
-    template_name = 'accounts/detail-update-view.html'
+def login_view(request):
+    template_name = 'accounts/login.html'
+    form = AccountAuthenticationForm()
 
-    def get_object(self):
-        return self.request.user
+    user = request.user
+    if user.is_authenticated:
+        return redirect('/')
+    if request.POST:
+        form = AccountAuthenticationForm(request.POST or None)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
 
-    def get_context_data(self, *args, **kwargs):
-        context = super(UserDetailUpdateView,
-                        self).get_context_data(*args, **kwargs)
-        context['title'] = 'Change Your Account Details'
-        return context
+            if user:
+                login(request, user)
+                return redirect('/')
+            else:
+                messages.error(request, 'User Log in failed.')
+        else:
+            messages.error(
+                request, 'Username or Password Incorrect, User Log in failed.')
 
-    def get_success_url(self):
-        return reverse("account:home")
+    else:
+        form = AccountAuthenticationForm()
+    context = {"loginform": form}
+    return render(request, template_name, context)
 
 
-# def login_page(request):
-#     form = LoginForm(request.POST or None)
-#     context = {
-#         "form": form
+@login_required(login_url='account/login')
+def logout(request):
+    logout(request)
+    return redirect('account/login')
+
+
+# @login_required(login_url='accounts/login')
+# def profile_view(request):
+#     template_name='accounts/profile.html'
+#     args = request.user
+#     booking_history = Book.objects.filter(user=args)
+#     context={
+#         'booking_history':booking_history,
 #     }
-#     next_ = request.GET.get('next')
-#     next_post = request.POST.get('next')
-#     redirect_path = next_ or next_post or None
-#     if form.is_valid():
-#         username  = form.cleaned_data.get("username")
-#         password  = form.cleaned_data.get("password")
-#         user = authenticate(request, username=username, password=password)
-#         if user is not None:
-#             login(request, user)
-#             try:
-#                 del request.session['guest_email_id']
-#             except:
-#                 pass
-#             if is_safe_url(redirect_path, request.get_host()):
-#                 return redirect(redirect_path)
-#             else:
-#                 return redirect("/")
+#     return render(request,template_name,context)
+
+def logout_view(request):
+    logoutUser(request)
+    return redirect('/')
+
+
+# def account_view(request):
+#     template_name = 'accounts/update.html'
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+
+#     context = {}
+
+#     if request.POST:
+#         form = AccountUpdateForm(request.POST, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Accout  Updated Successfully.')
+#             return redirect('profile')
 #         else:
-#             # Return an 'invalid login' error message.
-#             print("Error")
-#     return render(request, "accounts/login.html", context)
-
-# User = get_user_model()
-# def register_page(request):
-#     form = RegisterForm(request.POST or None)
-#     context = {
-#         "form": form
-#     }
-#     if form.is_valid():
-#         form.save()
-#     return render(request, "accounts/register.html", context)
+#             messages.error(request, 'Invalid , Not Updated')
+#             messages.error(request, form.errors)
+#     else:
+#         form = AccountUpdateForm(
+#             initial={
+#                 "email": request.user.email,
+#                 "username": request.user.username,
+#             }
+#         )
+#     context['account_form'] = form
+#     return render(request, template_name, context)
