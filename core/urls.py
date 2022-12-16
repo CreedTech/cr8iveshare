@@ -3,9 +3,6 @@ from .views import (
     index,
     about,
     contact,
-    signup,
-    signin,
-    logout
 )
 from accounts.views import *
 
@@ -15,8 +12,8 @@ urlpatterns = [
     path('', index, name='index'),
     path('about', about, name='about'),
     path('contact', contact, name='contact'),
-    path('signup', signup, name='signup'),
-    path('signin', signin, name='signin'),
-    path('logout', logout, name='logout'),
-    path('register/', RegisterView.as_view(), name='register'),
+    # path('signup', signup, name='signup'),
+    # path('signin', signin, name='signin'),
+    # path('logout', logout, name='logout'),
+    # path('register/', RegisterView.as_view(), name='register'),
 ]
