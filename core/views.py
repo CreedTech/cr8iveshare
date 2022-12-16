@@ -15,6 +15,10 @@ def about(request):
     template_name = "about.html"
     return render(request, template_name)
 
+def register(request):
+    template_name = "register.html"
+    return render(request, template_name)
+
 
 def contact(request):
     template_name = "contact.html"
@@ -47,9 +51,9 @@ def signup(request):
 
                 # create a profile object for the new user
                 user_model = User.objects.get(username=username)
-                # new_profile = Profile.objects.create(
-                #     user=user_model, id_user=user_model.id)
-                # new_profile.save()
+                new_profile = Profile.objects.create(
+                    user=user_model, id_user=user_model.id)
+                new_profile.save()
                 return redirect('settings')
         else:
             messages.info(request, 'Password mismatch')
