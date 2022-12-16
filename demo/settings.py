@@ -1,4 +1,5 @@
 import os
+from django.contrib.messages import constants as messages
 
 ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 
@@ -6,6 +7,14 @@ DEBUG = True
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-05sgp9!deq=q1nltm@^^2cc+v29i(tyybv3v2t77qi66czazj'
 ALLOWED_HOSTS = []
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-secondary',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,9 +25,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'accounts',
+    'widget_tweaks',
 ]
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.Account'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

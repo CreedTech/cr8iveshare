@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
  {% load static %}
+ {% load widget_tweaks %} 
   {% block title %}Cr8iveShare{%endblock title %}
    {% block content %}
 <div id="haru-content-main" class="clearfix">
@@ -62,14 +63,14 @@
                         {% csrf_token %}
                         <!-- After Form Buttons -->
                         <!-- {{form}} -->
-                        {% for error in form.non_field_errors %}
+                        <!-- {% for error in profile_form.non_field_errors %}
                         <label>{{ error|escape }} </label>
-                        {% endfor %}
+                        {% endfor %} -->
                         <div class="youzify-membership-form-item">
                           <div class="youzify-membership-item-content">
-                            <label for="user_login">Email</label>
+                            <label for="user_login">Username</label>
                             <div class="youzify-membership-field-content">
-                              {{form.email}}
+                              {{loginform.username|attr:"type:text"|attr:"placeholder:Your username"}}
                             </div>
                           </div>
                         </div>
@@ -77,7 +78,7 @@
                           <div class="youzify-membership-item-content">
                             <label for="user_login">Password</label>
                             <div class="youzify-membership-field-content">
-                              {{form.password}}
+                              {{loginform.password|attr:"type:password"|attr:"placeholder:Your Password"}}
                             </div>
                           </div>
                         </div>

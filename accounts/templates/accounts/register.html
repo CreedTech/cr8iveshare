@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
  {% load static %}
+ {% load widget_tweaks %} 
   {% block title %}Cr8iveShare{% endblock title %}
    {% block content %}
 <div id="haru-content-main" class="clearfix">
@@ -32,26 +33,41 @@
         {% csrf_token %}
           <!-- After Form Buttons -->
           <!-- {{form}} -->
-          <!-- {% for error in form.non_field_errors %}
-                        <label>{{ error|escape }} </label>
-                        {% endfor %} -->
-                        {% for error in form.email.errors %}
-    <label>{{ error|escape }}  </label>
-{% endfor %}
+
           <div class="youzify-membership-form-item">
             <div class="youzify-membership-item-content">
-              <label for="user_login">Full Name</label>
+              <label for="user_login">FirstName</label>
               <div class="youzify-membership-field-content">
-                {{form.full_name}}
+                {{signupform.firstname|attr:"type:text"|attr:"placeholder:Your FirstName"}}
               </div>
+              <span style="color:red">{{signupform.firstname.errors}}</span>
+            </div>
+          </div>
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">LastName</label>
+              <div class="youzify-membership-field-content">
+                {{signupform.lastname|attr:"type:text"|attr:"placeholder:Your LastName"}}
+              </div>
+              <span style="color:red">{{signupform.lastname.errors}}</span>
+            </div>
+          </div>
+          <div class="youzify-membership-form-item">
+            <div class="youzify-membership-item-content">
+              <label for="user_login">Username</label>
+              <div class="youzify-membership-field-content">
+                {{signupform.username|attr:"type:text"|attr:"placeholder:Your username"}}
+              </div>
+              <span style="color:red; list-style-type:none;">{{signupform.username.errors}}</span>
             </div>
           </div>
           <div class="youzify-membership-form-item">
             <div class="youzify-membership-item-content">
               <label for="user_login">Email</label>
               <div class="youzify-membership-field-content">
-                {{form.email}}
+                {{signupform.email|attr:"type:email"|attr:"placeholder:Your Email"}}
               </div>
+              <span style="color:red">{{signupform.email.errors}}</span>
             </div>
           </div>
           
@@ -59,16 +75,18 @@
             <div class="youzify-membership-item-content">
               <label for="user_login">Password</label>
               <div class="youzify-membership-field-content">
-                {{form.password1}}
+                {{signupform.password1|attr:"type:password"|attr:"placeholder:Your Password"}}
               </div>
+              <span style="color:red">{{signupform.password1.errors}}</span>
             </div>
           </div>
           <div class="youzify-membership-form-item">
             <div class="youzify-membership-item-content">
               <label for="user_login">Confirm Password</label>
               <div class="youzify-membership-field-content">
-                {{form.password2}}
+                {{signupform.password2|attr:"type:password"|attr:"placeholder:Repeat Your Password"}}
               </div>
+              <span style="color:red">{{signupform.password2.errors}}</span>
             </div>
           </div>
           
