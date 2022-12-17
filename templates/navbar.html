@@ -60,11 +60,8 @@
                               </div>
           <!-- End Header mobile customize -->
                               <div class="header-logo-mobile">
-                  <a href="../index.html" class="logo-mobile-default" title="cr8iveshare">
-                      <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo.png' %}" alt="cr8iveshare" />
-                  </a>
-                  <a href="../index.html" class="logo-mobile-retina" title="cr8iveshare">
-                      <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %}" alt="cr8iveshare" />
+                  <a href="../index.html" class="logo-mobile-retina" title="SplitUnity">
+                      <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %}" alt="SplitUnity" />
                   </a>
               </div>
                       </div>
@@ -203,34 +200,37 @@
       <div class="header-nav-above d-flex justify-content-between">
           <div class="header-left align-self-center">
                       <div class="header-elements header-elements-left">
+  
   <ul class="header-elements-item header-social-network-wrap">
-<li><a href="#" target="_blank"><i class="header-icon fa fa-twitter"></i></a></li>
-<li><a href="#" target="_blank"><i class="header-icon fa fa-facebook"></i></a></li>
-<li><a href="#" target="_blank"><i class="header-icon fa fa-youtube"></i></a></li>
-<li><a href="#" target="_blank"><i class="header-icon fa fa-pinterest"></i></a></li>
-<li><a href="#" target="_blank"><i class="header-icon fa fa-instagram"></i></a></li>
-</ul>    </div>
+    {% if page_contents.social_icon_1 %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-{{page_contents.social_icon_1}}"></i></a></li>
+    {% else %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-twitter"></i></a></li>
+    {% endif %} 
+    {% if page_contents.social_icon_2 %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-{{page_contents.social_icon_2}}"></i></a></li>
+    {% else %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-facebook"></i></a></li>
+    {% endif %} 
+    {% if page_contents.social_icon_3 %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-{{page_contents.social_icon_3}}"></i></a></li>
+    {% else %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-youtube"></i></a></li>
+    {% endif %} 
+    {% if page_contents.social_icon_4 %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-{{page_contents.social_icon_4}}"></i></a></li>
+    {% else %}
+    <li><a href="#" target="_blank"><i class="header-icon fa fa-instagram"></i></a></li>
+    {% endif %}
+  </ul> 
+    
+  </div>
               </div>
           <div class="align-self-center">
               
 <div class="header-logo has-logo-sticky">
-<a href="../index.html" class="logo-default" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo.png' %} " alt="cr8iveshare" style="max-height: 24px" />
-</a>
-<a href="../index.html" class="logo-black" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo-black.png' %} " alt="cr8iveshare" style="max-height: 24px" />
-</a>
-<a href="../index.html" class="logo-retina" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %} " alt="cr8iveshare" style="max-height: 24px" />
-</a>
-<a href="../index.html" class="logo-black-retina" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo-black%402x.png' %} " alt="cr8iveshare" style="max-height: 24px" />
-</a>
-  <a href="../index.html" class="logo-sticky" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo.png' %} " alt="cr8iveshare" style="max-height: 24px" />
-</a>
-<a href="../index.html" class="logo-sticky-retina" title="cr8iveshare">
-  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %} " alt="cr8iveshare" style="max-height: 24px" />
+<a href="../index.html" class="logo-retina" title="SplitUnity">
+  <img src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %} " alt="SplitUnity" style="max-height: 24px" />
 </a>
 </div>                </div>
           <div class="header-right align-self-center">
