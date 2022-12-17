@@ -60,6 +60,26 @@ class PageContents(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=100, unique=True, blank=True)
+
+    class Meta:
+        verbose_name = ("Category")
+        verbose_name_plural = ("Categories")
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        slug = self.name
+        self.slug = slugify(slug, allow_unicode=True)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("category_detail", kwargs={"pk": self.pk})
+
+
 class Video(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField(max_length=300)
@@ -68,19 +88,14 @@ class Video(models.Model):
                                     blank=False, null=False)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     number_of_views = models.IntegerField(blank=True, default=0)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = ("Video")
         verbose_name_plural = ("Videos")
 
     def __str__(self):
-        return self.user
-
-    def save(self, *args, **kwargs):
-        slug = self.description
-        if not self.slug:
-            self.slug = slugify(slug, allow_unicode=True)
-        super().save(*args, **kwargs)
+        return self.title
 
     def get_absolute_url(self):
         return reverse("Video_detail", kwargs={"pk": self.pk})
@@ -142,23 +157,3 @@ class Video_View(models.Model):
 class Channel_Subscription(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
-
-
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=100, unique=True, blank=True)
-
-    class Meta:
-        verbose_name = ("Category")
-        verbose_name_plural = ("Categories")
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        slug = self.name
-        self.slug = slugify(slug, allow_unicode=True)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse("category_detail", kwargs={"pk": self.pk})

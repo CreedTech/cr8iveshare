@@ -12,6 +12,7 @@ import random
 from django.core.files.storage import FileSystemStorage
 import os
 from wsgiref.util import FileWrapper
+from django.contrib.auth.mixins import LoginRequiredMixin
 # from .models import Profile
 # Create your views here.
 
@@ -84,20 +85,23 @@ class VideoFileView(View):
 
 
 # @login_required(login_url='account/login')
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):
     template_name = 'index.html'
+    login_url = '/account/login/'
+    redirect_field_name = 'redirect_to'
 
     def get(self, request):
         most_recent_videos = Video.objects.order_by('-datetime')[:8]
-        most_recent_channels = Channel.objects.filter()
+        most_recent_channels = Channel.objects.exclude(user=request.user)
 
         channel = False
         print(request.user.username)
         if request.user.username != "":
             # print("YEs")
             try:
-                channel = Channel.objects.filter(user__username=request.user)
+                channel = Channel.objects.filter(user=request.user)
                 print(channel)
+                print("Yo")
                 channel = channel.get()
             except Channel.DoesNotExist:
                 channel = False
@@ -208,7 +212,7 @@ class VideoView(View):
 
         try:
             channel = Channel.objects.filter(
-                user__username=request.user).get().channel_name != ""
+                user=request.user).get().channel_name != ""
             print(channel)
             context['channel'] = channel
         except Channel.DoesNotExist:
@@ -292,9 +296,9 @@ class NewVideo(View):
 
         try:
             channel = Channel.objects.filter(
-                user__username=request.user).get().channel_name != ""
+                user=request.user).get().channel_name != ""
             if channel:
-                # print("HHHEEEEE     ", Channel.objects.filter(user__username = request.user).get().channel_name)
+                # print("HHHEEEEE     ", Channel.objects.filter(user = request.user).get().channel_name)
                 form = NewVideoForm()
                 return render(request, self.template_name, {'form': form, 'channel': channel})
         except Channel.DoesNotExist:
@@ -377,7 +381,7 @@ def liked_videos(request):
 
     try:
         channel = Channel.objects.filter(
-            user__username=request.user).get().channel_name != ""
+            user=request.user).get().channel_name != ""
         print(channel)
         context['channel'] = channel
     except Channel.DoesNotExist:
@@ -395,7 +399,7 @@ def watch_history(request):
 
     try:
         channel = Channel.objects.filter(
-            user__username=request.user).get().channel_name != ""
+            user=request.user).get().channel_name != ""
         print(channel)
         context['channel'] = channel
     except Channel.DoesNotExist:
@@ -411,7 +415,7 @@ def trending(request):
 
     try:
         channel = Channel.objects.filter(
-            user__username=request.user).get().channel_name != ""
+            user=request.user).get().channel_name != ""
         print(channel)
         context['channel'] = channel
     except Channel.DoesNotExist:
@@ -466,7 +470,7 @@ def subscriptions(request):
 
     try:
         channel = Channel.objects.filter(
-            user__username=request.user).get().channel_name != ""
+            user=request.user).get().channel_name != ""
         print(channel)
         context['channel'] = channel
     except Channel.DoesNotExist:
@@ -482,7 +486,7 @@ def channels_list(request):
 
     try:
         channel = Channel.objects.filter(
-            user__username=request.user).get().channel_name != ""
+            user=request.user).get().channel_name != ""
         print(channel)
         context['channel'] = channel
     except Channel.DoesNotExist:
