@@ -63,6 +63,7 @@ class PageContents(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=100, unique=True, blank=True)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = ("Category")
@@ -104,6 +105,7 @@ class Video(models.Model):
 class Like(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user
@@ -112,6 +114,7 @@ class Like(models.Model):
 class Dislike(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user
@@ -120,6 +123,7 @@ class Dislike(models.Model):
 class FollowersCount(models.Model):
     followers = models.CharField(max_length=100)
     user = models.CharField(max_length=100)
+    datetime = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.user
@@ -146,6 +150,7 @@ class Channel(models.Model):
     channel_name = models.CharField(max_length=50, blank=False, null=False)
     subscribers = models.IntegerField(default=0, blank=False, null=False)
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now_add=True)
 
 
 class Video_View(models.Model):
@@ -157,3 +162,4 @@ class Video_View(models.Model):
 class Channel_Subscription(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     channel = models.ForeignKey(Channel, on_delete=models.CASCADE)
+    datetime = models.DateTimeField(auto_now_add=True)
