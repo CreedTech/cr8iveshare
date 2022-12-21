@@ -31,17 +31,16 @@
       <div id="haru-content-main" class="clearfix">
         <div class="haru-single-breadcrumbs">
             <div class="haru-container">
-                <ul class="haru-breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><a
-                            itemprop="item" href="../../index.html"><span itemprop="name">Home</span></a>
+                <ul class="haru-breadcrumb">
+                    <li><span itemprop="name">Home</span></a>
                         <meta itemprop="position" content="0" />
                     </li><span class="delimiter"> &raquo; </span>
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span
+                    <li><span
                             itemprop="name"><a itemprop="item" href="../index.html">Videos</span></a>
                         <meta itemprop="position" content="1" />
                     </li><span class="delimiter"> &raquo; </span>
-                    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem"><span
-                            itemprop="name" class="current">Self Hosted Video WordPress theme</span>
+                    <li><span
+                            itemprop="name" class="current">{{ video.title }}</span>
                         <meta itemprop="position" content="2" />
                     </li>
                 </ul><!-- .breadcrumbs -->
@@ -58,7 +57,7 @@
                                 <div class="video-player-wrap server-selfhost">
                                     <div class="video-player-content">
                                         <div class="video-float">
-                                            <h6 class="video-float__title">Self Hosted Video WordPress theme</h6>
+                                            <h6 class="video-float__title">{{ video.title }}</h6>
                                             <div class="video-float__actions">
                                                 <div class="video-float__close"><i class="haru-icon haru-times"></i>
                                                 </div>
@@ -102,10 +101,10 @@
                                                                         preload="none" controls playsinline
                                                                         webkit-playsinline>
                                                                         <source
-                                                                            src="/static/wp-content/uploads/2019/06/big_buck_bunny.mp4"
+                                                                            src="{{MEDIA_URL}}{{video.path}}"
                                                                             type="video/mp4">
                                                                         <source
-                                                                            src="/static/wp-content/uploads/2019/06/big_buck_bunny.webm"
+                                                                            src="{{MEDIA_URL}}{{video.path}}"
                                                                             type="video/webm">
                                                                     </video>
 
@@ -170,7 +169,7 @@
 
                                     </div>
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -699,7 +698,7 @@
                         </div>
                     </div>
 
-                    <h6 class="single-video-title">Self Hosted Video WordPress theme</h6>
+                    <h6 class="single-video-title">{{ video.title }}</h6>
                     <div class="single-video-category"><a href="../../video-category/fashion/index.html"
                             rel="tag">Fashion</a> <a href="../../video-category/game/index.html" rel="tag">Game</a>
                         <a href="../../video-category/harutheme/index.html" rel="tag">HaruTheme</a> <a
@@ -859,7 +858,7 @@
                                     <img src="/static/wp-content/uploads/2020/01/travel-6.jpg"
                                         alt="Bali, abseits des Massentourismus Teil">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -896,7 +895,7 @@
                                     <img src="/static/wp-content/uploads/2019/11/fashion-17.jpg"
                                         alt="Facebook Video WordPress theme">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -933,7 +932,7 @@
                                     <img src="/static/wp-content/uploads/2020/01/technology-1.jpg"
                                         alt="A Record Breaking World Championship">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -970,7 +969,7 @@
                                     <img src="/static/wp-content/uploads/2020/04/technology-9.jpg"
                                         alt="PUBG &#8211; New Lobby Music Preview">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1007,7 +1006,7 @@
                                     <img src="/static/wp-content/uploads/2019/11/fashion-7.jpg"
                                         alt="Embed Youtube Video">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1043,7 +1042,7 @@
                                     <img src="/static/wp-content/uploads/2020/01/travel-2-1.jpg"
                                         alt="How to Holiday in London">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1079,7 +1078,7 @@
                                     <img src="/static/wp-content/uploads/2020/01/technology-7.jpg"
                                         alt="Stand United &#8211; PGC 2019 Official Theme Song">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1116,7 +1115,7 @@
                                     <img src="/static/wp-content/uploads/2019/11/fashion-20.jpg"
                                         alt="Google Video WordPress theme">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1153,7 +1152,7 @@
                                     <img src="/static/wp-content/uploads/2019/11/fashion-5.jpg"
                                         alt="Haru Filmmaker WordPress theme">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
@@ -1190,7 +1189,7 @@
                                     <img src="/static/wp-content/uploads/2020/01/technology-10.jpg"
                                         alt="Academy Rush Week 1 &#8211; LCS Academy Spring Split">
                                     <div class="toolbar-action toolbar-action--background video-watch-later "
-                                        data-id="96" data-title="Self Hosted Video WordPress theme"
+                                        data-id="96" data-title="{{ video.title }}"
                                         data-permalink="index.html"
                                         data-thumb="/static/wp-content/uploads/2019/11/fashion-13.jpg">
                                         <i class="haru-icon haru-clock"></i>
