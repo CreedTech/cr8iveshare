@@ -240,7 +240,7 @@ class CommentView(View):
 
             new_comment = Comment(text=text, user=request.user, video=video)
             new_comment.save()
-            return HttpResponseRedirect('/video/{}/{}/'.format(str(video_id), str(0)))
+            # return HttpResponseRedirect('/video/{}/{}/'.format(str(video_id), str(0)))
         return HttpResponse('This is Register view. POST Request.')
 
 
