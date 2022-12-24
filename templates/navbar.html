@@ -93,11 +93,20 @@
         </div>
         <!-- End Header mobile customize -->
         <div class="header-logo-mobile">
-          <a href="../index.html" class="logo-mobile-retina" title="SplitUnity">
+          <a href="../index.html" class="logo-retina" title="SplitUnity">
+            {% if page_contents.navbar_logo %}
             <img
-              src="{% static 'wp-content/themes/vidio/framework/admin-assets/images/theme-options/logo%402x.png' %}"
-              alt="SplitUnity"
+              src="{{ page_contents.navbar_logo.url }} "
+              alt="SPLITUNITY"
+              style="max-height: 70px"
             />
+            {% else %}
+            <img
+              src=""
+              alt="SPLITUNITY"
+              style="max-height: 70px"
+            />
+            {% endif %}
           </a>
         </div>
       </div>
@@ -668,11 +677,19 @@
         <div class="align-self-center">
           <div class="header-logo has-logo-sticky">
             <a href="../index.html" class="logo-retina" title="SplitUnity">
+              {% if page_contents.navbar_logo %}
               <img
-                src="{% static 'wp-content/themes/cr8iveshare/framework/admin-assets/images/theme-options/logo%402x.png' %} "
-                alt="SplitUnity"
-                style="max-height: 24px"
+                src="{{ page_contents.navbar_logo.url }} "
+                alt="SPLITUNITY"
+                style="max-height: 100px"
               />
+              {% else %}
+              <img
+                src=""
+                alt="SPLITUNITY"
+                style="max-height: 54px"
+              />
+              {% endif %}
             </a>
           </div>
         </div>
@@ -790,18 +807,6 @@
                   class="haru-menu menu_style_dropdown menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0"
                 >
                   <a href="{% url 'core:channels_list' %}">Channels</a>
-                </li>
-                <li
-                  id="menu-item-159"
-                  class="haru-menu menu_style_dropdown menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0"
-                >
-                  <a href="#">Shortcodes</a>
-                </li>
-                <li
-                  id="menu-item-295"
-                  class="haru-menu menu_style_dropdown menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children level-0"
-                >
-                  <a href="#">Submit</a>
                 </li>
                 <li
                   id="menu-item-1152"
